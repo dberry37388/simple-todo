@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'tasks'], function() {
+    Route::get('/', 'TaskController@index')->name('allTasks');
+    Route::post('/', 'TaskController@store')->name('createTask');
+    Route::get('{task}', 'TaskController@show')->name('showTask');
+    Route::put('{task}', 'TaskController@update')->name('updateTask');
+    Route::delete('{task}', 'TaskController@destroy')->name('deleteTask');
+});
