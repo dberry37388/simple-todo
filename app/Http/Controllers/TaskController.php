@@ -24,7 +24,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::where('user_id', auth()->id())->simplePaginate(10);
+
+        return view('tasks.index', compact('tasks'));
     }
 
     /**
@@ -34,7 +36,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -77,7 +79,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('tasks.update', compact('task'));
     }
 
     /**

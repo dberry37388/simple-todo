@@ -25,7 +25,7 @@ class ManageTasksTest extends TestCase
         $task = make(Task::class);
 
         // send a post request to the endpoint
-        $this->post(route('createTask'), $task->toArray());
+        $this->post(route('storeTask'), $task->toArray());
     }
 
     /**
@@ -45,7 +45,7 @@ class ManageTasksTest extends TestCase
         $task = make(Task::class);
 
         // send a post request to the endpoint
-        $response = $this->post(route('createTask'), $task->toArray());
+        $response = $this->post(route('storeTask'), $task->toArray());
 
         $this->get($response->headers->get('Location'))
             ->assertSee($task->title)
@@ -188,6 +188,6 @@ class ManageTasksTest extends TestCase
     {
         $task = make(Task::class, $overrides);
 
-        return $this->post(route('createTask'), $task->toArray());
+        return $this->post(route('storeTask'), $task->toArray());
     }
 }
